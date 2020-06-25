@@ -1,4 +1,4 @@
-from hubApp import models
+from .models import Paper, Backend
 
 class BackendTest():
 	
