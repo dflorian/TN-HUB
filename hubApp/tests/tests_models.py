@@ -1,6 +1,6 @@
 from hubApp import models
 
-class BackendTest(TestCase):
+class BackendTest():
 	
 	def test_Backend():
 		t = Backend('Bob')
