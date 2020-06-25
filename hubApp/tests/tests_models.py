@@ -1,4 +1,4 @@
-from hubApp import models
+from .hubApp.models import *
 
 def test_Backend():
 	t = Backend('Bob')
