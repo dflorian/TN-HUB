@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Update the secret key to a value of your own before deploying the app.
-SECRET_KEY = 'lldtg$9(wi49j_hpv8nnqlh!cj7kmbwq0$rj7vy(b(b30vlyzj'
+SECRET_KEY = 'abc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -103,9 +103,9 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/static-mediator-279216:us-central1:tnhub-v1',
-            'USER': 'floriand',
-            'PASSWORD': 'test',
+            'HOST': '/cloudsql/project_...',
+            'USER': 'user',
+            'PASSWORD': 'password',
             'NAME': 'polls',
         }
     }
@@ -122,8 +122,8 @@ else:
             'HOST': '127.0.0.1',
             'PORT': '3306',
             'NAME': 'polls',
-            'USER': 'floriand',
-            'PASSWORD': 'test',
+            'USER': 'user',
+            'PASSWORD': 'password',
         }
     }
 # [END db_setup]
