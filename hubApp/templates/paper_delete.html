@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+ {% block title %} 
+      TNH - {{ paper.title }}
+ {% endblock %} 
+
+{% block content %}
+
+<br>
+<div class="mb-5">
+	{% if user.id == paper.owner.id %}
+
+	<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ paper.title }}"?</p>
+    <input type="submit" value="Confirm">
+	</form>
+
+<hr>
+</div>
+<div class="mb-5">
+	<li> {{ paper.title }} - {{ paper.author }}, {{ paper.publication_date }}
+		<span class="badge badge-primary badge-pill"> {{ paper.total_votes}} </span> <br> 
+		{{ paper.get_category}} <br>
+		{{ paper.description|slice:":500"|safe }}... <br>
+		{{ paper.link}}</li>
+	
+	{% endif %}
+</div>
+
+{% endblock %}

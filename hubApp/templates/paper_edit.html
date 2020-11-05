@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+ {% block title %} 
+      TNH - Edit submission
+ {% endblock %} 
+
+{% block content %}
+
+	{% if user.id == paper.owner.id %}
+	<br>
+	<h1> Edit submission </h1>
+
+	<br><br>
+
+	<div class="form-group ml-4 mr-4">
+		<form method="POST">
+			{% csrf_token %}
+
+			<div class="row mb-4">
+				{{ form.title }}
+			</div>
+			<div class="row mb-2">
+				Categories:
+			</div>
+			<div class="row mb-4">
+				{% for value in form.category %}
+				<div class="col-4">
+			        {{ value }}
+			    </div>
+			    {% endfor %}
+			</div>
+			<div class="row mb-4">
+				{{ form.author }}
+			</div>
+			<div class="row mb-4">
+				{{ form.description }}
+			</div>
+			<div class="row mb-4">
+				{{ form.keywords }}
+			</div>
+			<div class="row mb-4">
+				{{ form.link }}
+			</div>
+			<div class="row mb-2">
+				Backend:
+			</div>
+			<div class="row mb-4">
+				{% for value in form.backend %}
+				<div class="col-4">
+			        {{ value }}
+			    </div>
+			    {% endfor %}
+			</div>
+
+		<div class="d-flex justify-content-center mt-5">
+			<button class="btn btn-primary text-center"> Submit </button>
+		</div>
+		</form>	
+	</div>
+	{% else %}
+	<br>
+	<h5> You cannot edit this post </h5>
+
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+ {% block title %} 
+      TNH - New submission
+ {% endblock %} 
+
+{% block content %}
+
+	{% if user.is_authenticated %}
+	<br>
+	<h1> New submission </h1>
+
+	<br><br>
+
+	<div class="form-group ml-4 mr-4">
+		<form method="POST">
+			{% csrf_token %}
+
+			<div class="row mb-4">
+			Title of submission: <br>
+				{{ form.title }}
+			</div>
+			<div class="row mb-2">
+				Categories:
+			</div>
+			<div class="row mb-4">
+				{% for value in form.category %}
+				<div class="col-2">
+			        {{ value }}
+			    </div>
+			    {% endfor %}
+			</div>
+			<div class="row mb-4">
+			Author(s) of Submission (Name of each author that contributed to the submitted code): <br>
+				{{ form.author }}
+			</div>
+			<div class="row mb-4">
+			Description (Brief description of the code in this Submission. You can include reference to papers or to other Submissions on TN hub): <br>
+				{{ form.description }}
+			</div>
+			<div class="row mb-4">
+			Keywords (Such as MPS, DMRG, ground state, time evolution, anomaly detection, etc--- that may facilitate identifying your Submission while using Search): <br>
+				{{ form.keywords }}
+			</div>
+			<div class="row mb-4">
+			URL (provide a link to the github account that hosts the code of this submission): <br>
+				{{ form.link }}
+			</div>
+			<div class="row mb-2">
+				Backend:
+			</div>
+			<div class="row mb-4">
+				{% for value in form.backend %}
+				<div class="col-2">
+			        {{ value }}
+			    </div>
+			    {% endfor %}
+			</div>
+
+		<div class="d-flex justify-content-center mt-5">
+			<button class="btn btn-primary text-center"> Submit </button>
+		</div>
+		</form>	
+	</div>
+	{% endif %}
+
+{% endblock %}

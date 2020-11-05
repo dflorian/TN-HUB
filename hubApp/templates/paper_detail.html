@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+ {% block title %} 
+      TNH - {{ paper.title }}
+ {% endblock %} 
+
+{% block content %}
+
+<br>
+<div class="mb-5">
+	<h1> {{ paper.title }} </h1>
+
+		Category: {{ paper.get_category }} <br>
+		Backend: {{ paper.get_backend }} <br>
+
+		{% if user.id == paper.owner.id %}
+			<a href="{% url 'paper-edit' paper.pk %}"> edit </a> 
+			-
+			<a href="{% url 'paper-delete' paper.pk %}"> delete </a> 
+		{% endif%} <br>
+	<small> 
+	<hr>
+		By: {{ paper.author }}, {{ paper.publication_date }} <br>
+		<a href="{{ paper.link}}"> {{ paper.link }} </a>
+	</small>
+<hr>
+</div>
+<div class="mb-5">
+	{{ paper.description|safe}}
+	<br><br>{{ paper.keywords}}
+	<br><br>
+	<form action="{% url 'like_paper' paper.pk %}"
+	method="POST">
+		{% csrf_token %}
+		{% if user.is_authenticated %}
+
+			{% if voted %}
+				<button type="submit", name="paper_id", value="{{ paper.id }}", class="btn btn-danger btn-sm"> Unvote </button> 
+
+			{% else %}
+				<button type="submit", name="paper_id", value="{{ paper.id }}", class="btn btn-primary btn-sm"> Vote </button> 
+
+			{% endif %}
+		{% else %}
+			<small><a href="{% url 'login' %}">Login</a> to vote</small>
+		{% endif %}
+
+		| This application has {{ paper.total_votes }} votes: {{ paper.voters}} <br>
+	</br>
+		
+	</form>
+</div>
+
+{% endblock %}

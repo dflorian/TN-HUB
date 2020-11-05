@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+ {% block title %} 
+      TNH - {{ cats }}
+ {% endblock %} 
+
+{% block content %}
+
+<h1> Categories </h1>
+
+<ul>
+{% for paper in category_paper %}
+	<div class="mb-4">
+	<li> <a href="{% url 'paper-detail' paper.pk %}"> {{ paper.title }} </a> 
+		- {{ paper.author }}, {{ paper.publication_date }}
+		<span class="badge badge-primary badge-pill"> {{ paper.total_votes}} </span> <br> 
+		{{ paper.get_category}} <br>
+		{{ paper.description|slice:":500"|safe }}... <br>
+		<a href="{{ paper.link}}"> {{ paper.link }} </a>
+	</li>
+	</div>
+
+{% endfor %}
+</ul>
+
+
+{% endblock %}
